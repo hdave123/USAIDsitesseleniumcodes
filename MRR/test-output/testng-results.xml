@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2023-05-31T19:16:51 UTC" name="Default suite" finished-at="2023-05-31T19:17:12 UTC" duration-ms="21102">
+    <groups>
+    </groups>
+    <test started-at="2023-05-31T19:16:51 UTC" name="Default test" finished-at="2023-05-31T19:17:12 UTC" duration-ms="21102">
+      <class name="MRRSite.ContactUspage">
+        <test-method is-config="true" signature="setup()[pri:0, instance:MRRSite.ContactUspage@3c407114]" started-at="2023-05-31T19:16:51 UTC" name="setup" finished-at="2023-05-31T19:17:04 UTC" duration-ms="13178" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="test3()[pri:0, instance:MRRSite.ContactUspage@3c407114]" started-at="2023-05-31T19:17:04 UTC" name="test3" finished-at="2023-05-31T19:17:11 UTC" duration-ms="7471" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- test3 -->
+        <test-method is-config="true" signature="aftermethod()[pri:0, instance:MRRSite.ContactUspage@3c407114]" started-at="2023-05-31T19:17:11 UTC" name="aftermethod" finished-at="2023-05-31T19:17:12 UTC" duration-ms="387" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- aftermethod -->
+      </class> <!-- MRRSite.ContactUspage -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
