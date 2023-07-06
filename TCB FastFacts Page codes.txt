@@ -1,0 +1,102 @@
+package TCBDashboard;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+public class TCBFastFacts {
+	WebDriver driver;
+	WebDriverWait wait;
+	@BeforeMethod
+	public void setup() throws InterruptedException{
+		System.setProperty("webdriver.chrome.driver","C:\\Users\\HDave\\Downloads\\chromedriver_win32 105.\\chromedriver.exe");
+		driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("https://tcb.dev.devtechlab.com/");
+		wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+		driver.findElement(By.xpath("//*[@id='react-burger-menu-btn']")).click();
+		Thread.sleep(2000);
+//Open FastFacts page
+		WebElement fastfacts = driver.findElement(By.xpath("//*[@id='outer-container']/div[1]/div/div[3]/div[1]/nav/ul/li/ul/li[1]/ul/li[3]/a"));
+		fastfacts.click();
+		Actions act = new Actions(driver);
+	    act.moveToElement(fastfacts).
+	    click().build().perform();
+	    Thread.sleep(2000);  
+	    driver.findElement(By.xpath("//*[@id='outer-container']/div[1]/div/div[1]")).click();
+	    Thread.sleep(2000);
+	    
+}
+@Test (priority = 1)
+public void test01() throws InterruptedException{
+//Click Region & Incomegroup		    
+		WebElement regionandincomegroup = wait.until(ExpectedConditions.elementToBeClickable((By.xpath("//*[@id='main-content']/div/div/div/div[1]/div[2]/ul"))));
+		Thread.sleep(2000);
+		WebElement Option = regionandincomegroup.findElement(By.xpath("//*[@data-testid='tab-label-1']"));
+		Option.click();
+		Thread.sleep(2000);
+	
+		Actions act1 = new Actions(driver);
+		act1.sendKeys(Keys.PAGE_DOWN).build().perform();
+	    System.out.println("Scroll down perfomed");
+	    Thread.sleep(3000);
+	    act1.sendKeys(Keys.PAGE_UP).build().perform();       
+	    System.out.println("Scroll up perfomed");
+	    Thread.sleep(3000);
+	    driver.close();
+}
+@Test (priority = 2)
+public void test02() throws InterruptedException{
+//Click Categories
+	    WebElement categories = wait.until(ExpectedConditions.elementToBeClickable((By.xpath("//*[@id='main-content']/div/div/div/div[1]/div[2]/ul"))));
+		Thread.sleep(2000);
+		WebElement Option1 = categories.findElement(By.xpath("//*[@data-testid='tab-label-2']"));
+		Option1.click();
+		Thread.sleep(2000);
+//Scroll up and down			
+		Actions act2 = new Actions(driver);
+		act2.sendKeys(Keys.PAGE_DOWN).build().perform();
+	    System.out.println("Scroll down perfomed");
+	    Thread.sleep(3000);
+	    act2.sendKeys(Keys.PAGE_UP).build().perform();       
+	    System.out.println("Scroll up perfomed");
+	    Thread.sleep(3000);
+	    driver.close();
+}
+@Test (priority = 3)
+public void test03() throws InterruptedException{
+//Click Western Hemisphere Deep Dive
+	    WebElement whdeepdive = wait.until(ExpectedConditions.elementToBeClickable((By.xpath("//*[@id='main-content']/div/div/div/div[1]/div[2]/ul"))));
+		Thread.sleep(2000);
+		WebElement Option2 = whdeepdive.findElement(By.xpath("//*[@data-testid='tab-label-3']"));
+		Option2.click();
+		Thread.sleep(2000);
+//Scroll up and down
+		Actions act3 = new Actions(driver);
+		act3.sendKeys(Keys.PAGE_DOWN).build().perform();
+	    System.out.println("Scroll down perfomed");
+	    Thread.sleep(3000);
+	    act3.sendKeys(Keys.PAGE_UP).build().perform();       
+	    System.out.println("Scroll up perfomed");
+	    Thread.sleep(3000);
+}
+@Test (priority = 4)
+public void test04() throws InterruptedException{
+//Click Download PDF
+	    WebElement downloadpdf = wait.until(ExpectedConditions.elementToBeClickable((By.xpath("//*[@id='main-content']/div/div/div/div[1]/div[2]/ul"))));
+		Thread.sleep(2000);
+		WebElement Option3 = downloadpdf.findElement(By.xpath("//*[@id='main-content']/span/a"));
+		Option3.click();
+		Thread.sleep(2000);
+		driver.close();
+}
+}

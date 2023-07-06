@@ -1,0 +1,279 @@
+package TCBDashboard;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+public class Test4data {
+
+	WebDriver driver;
+	WebDriverWait wait;
+	@BeforeMethod
+	public void setup() throws InterruptedException{
+		System.setProperty("webdriver.chrome.driver","C:\\Users\\HDave\\Downloads\\chromedriver_win32 (5)\\chromedriver.exe");
+		driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("https://tcb.dev.devtechlab.com/");
+		wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+		driver.findElement(By.xpath("//*[@id='react-burger-menu-btn']")).click();
+		Thread.sleep(2000);
+//Open Data Page
+		WebElement data = driver.findElement(By.xpath("//*[@id='outer-container']/div[1]/div/div[3]/div[1]/nav/ul/li/ul/li[1]/ul/li[4]/a"));
+		Actions act = new Actions(driver);
+		act.moveToElement(data).
+		click().build().perform();
+		Thread.sleep(2000);  
+		driver.findElement(By.xpath("//*[@id='outer-container']/div[1]/div/div[1]")).click();
+		Thread.sleep(2000);
+		Actions act1 = new Actions(driver);
+		act1.sendKeys(Keys.PAGE_DOWN).build().perform();
+	    System.out.println("Scroll down perfomed");
+	    Thread.sleep(3000);
+	}
+@Test 
+public void test01() throws InterruptedException{
+//Contact Us link		    
+		WebElement contactus = driver.findElement(By.xpath("//a[text()='contact us']"));
+		contactus.click();
+		Thread.sleep(2000);
+		driver.navigate().back();
+		Thread.sleep(2000);
+				
+//Download CSV file
+		WebElement alldatacsv = driver.findElement(By.xpath("//a[text()='All Data - CSV']"));
+		alldatacsv.click();
+		Thread.sleep(5000);
+
+//Download XLSX file		
+		WebElement xlsx = driver.findElement(By.xpath("//a[text()='Data with column definitions - XLSX']"));
+		xlsx.click();
+		Thread.sleep(5000);
+
+//Download CSV file				
+		WebElement csv = driver.findElement(By.xpath("//a[text()='Column Definitions - CSV']"));
+		csv.click();
+		Thread.sleep(5000);
+
+//Open Dashboard page
+		WebElement dashboard = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@href='/dashboard']")));
+		dashboard.click();
+		Thread.sleep(2000);
+		driver.navigate().back();
+				
+//Open Data Query page
+		WebElement dataquery = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@href='/query']")));
+		dataquery.click();
+		Thread.sleep(2000);
+		driver.navigate().back();
+}
+@Test 
+public void test02() throws InterruptedException{
+
+//Open Query option    
+    WebElement query = wait.until(ExpectedConditions.elementToBeClickable((By.xpath("//*[@id='main-content']/div/div/div/div[1]/div[2]/ul"))));
+	Thread.sleep(2000);
+	WebElement Option = query.findElement(By.xpath("//li[text()='Query']"));
+	Option.click();
+	Thread.sleep(2000);
+//Add Filter Option
+	WebElement filterButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[text()='Add Filters']")));
+	filterButton.click();
+	Thread.sleep(5000);
+
+//Select Activity			
+	WebElement selectActivity = driver.findElement(By.cssSelector("#react-select-4-input"));
+	selectActivity.sendKeys("She Innovate");
+	selectActivity.sendKeys(Keys.ENTER);
+	selectActivity.sendKeys("0");
+	selectActivity.sendKeys(Keys.ENTER);
+	Actions activity = new Actions(driver);
+	activity.moveToElement(selectActivity).
+	click().build().perform();
+	Thread.sleep(2000);
+
+//Select Activity ID
+	WebElement selectActivityID = driver.findElement(By.xpath("//*[@id='react-select-5-input']"));
+	selectActivityID.sendKeys("100");
+	selectActivityID.sendKeys(Keys.ENTER);
+	Actions category = new Actions(driver);
+	category.moveToElement(selectActivityID).
+	click().build().perform();
+	Thread.sleep(2000);
+
+//Select Country
+	WebElement selectCountry = driver.findElement(By.xpath("//*[@id='react-select-6-input']"));
+	selectCountry.sendKeys("India");
+	selectCountry.sendKeys(Keys.ENTER);
+	Actions region = new Actions(driver);
+	region.moveToElement(selectCountry).
+	click().build().perform();
+	Thread.sleep(2000);
+
+//Select Fiscal Year
+	WebElement selectFiscalYear = driver.findElement(By.xpath("//*[@id='react-select-7-input']"));
+	selectFiscalYear.sendKeys("2017");
+	selectFiscalYear.sendKeys(Keys.ENTER);
+	Actions fiscalyear = new Actions(driver);
+	fiscalyear.moveToElement(selectFiscalYear).
+	click().build().perform();
+	Thread.sleep(2000);
+			
+//Select Funding Agency
+	WebElement selectagency = driver.findElement(By.xpath("//*[@id='react-select-8-input']"));
+	selectagency.sendKeys("Department of Agriculture (USDA)");
+	selectagency.sendKeys(Keys.ENTER);
+	selectagency.sendKeys("Department of State (DOS)");
+	selectagency.sendKeys(Keys.ENTER);
+	Actions agency = new Actions(driver);
+	agency.moveToElement(selectagency).
+	click().build().perform();
+	Thread.sleep(2000);
+//Select Imagency
+	WebElement selectimagency = driver.findElement(By.xpath("//*[@id='react-select-9-input']"));
+	selectimagency.sendKeys("Department of Agriculture (USDA)");
+	selectimagency.sendKeys(Keys.ENTER);
+	selectimagency.sendKeys("Department of State (DOS)");
+	selectimagency.sendKeys(Keys.ENTER);
+	Actions imagency = new Actions(driver);
+	imagency.moveToElement(selectimagency).
+	click().build().perform();
+	Thread.sleep(2000);
+//Select SubAgency
+	WebElement selectsubagency = driver.findElement(By.xpath("//*[@id='react-select-10-input']"));
+	selectsubagency.sendKeys("Afghanistan");
+	selectsubagency.sendKeys(Keys.ENTER);
+	selectsubagency.sendKeys("Angola");
+	selectsubagency.sendKeys(Keys.ENTER);
+	Actions subagency = new Actions(driver);
+	subagency.moveToElement(selectsubagency).
+	click().build().perform();
+	Thread.sleep(2000);
+//Select IncomeGroup
+	WebElement selectincomegroup = driver.findElement(By.xpath("//*[@id='react-select-11-input']"));
+	selectincomegroup.sendKeys("Low Income");
+	selectincomegroup.sendKeys(Keys.ENTER);
+	Actions incomegroup = new Actions(driver);
+	incomegroup.moveToElement(selectincomegroup).
+	click().build().perform();
+	Thread.sleep(2000);
+//Add Region
+	WebElement selectregion = driver.findElement(By.xpath("//*[@id='react-select-12-input']"));
+	selectregion.sendKeys("World");
+	selectregion.sendKeys(Keys.ENTER);
+	Actions region1 = new Actions(driver);
+	region1.moveToElement(selectregion).
+	click().build().perform();
+	Thread.sleep(2000);
+				
+//Select TCB Category
+	WebElement selecttcb = driver.findElement(By.xpath("//*[@id='react-select-13-input']"));
+	selecttcb.sendKeys("Customs Operations");
+	selecttcb.sendKeys(Keys.ENTER);
+	Actions tcb = new Actions(driver);
+	tcb.moveToElement(selectregion).
+	click().build().perform();
+	Thread.sleep(2000);
+//Apply Filter button
+	WebElement addfilter = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/div[3]/div/div/div[2]/div/div[12]/button[1]")));
+	addfilter.sendKeys(Keys.ENTER);
+	Thread.sleep(2000);
+			
+//Edit Filter
+	WebElement editfilter = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[text()='Edit Filters']")));
+	editfilter.click();
+	Actions edit = new Actions(driver);
+	edit.moveToElement(editfilter).
+	click().build().perform();
+	Thread.sleep(2000);
+					
+//Click Clear Filter button
+	WebElement clearfilter = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/div[3]/div/div/div[2]/div/div[12]/button[2]")));
+	clearfilter.sendKeys(Keys.ENTER);
+	
+//Activity Modal Close
+	//WebElement activityModalClose = wait.until(ExpectedConditions.elementToBeClickable((By.cssSelector("button[class='modal-close']"))));
+	//activityModalClose.click();
+	//Actions modal = new Actions(driver);
+	//modal.moveToElement(activityModalClose).
+	//click().build().perform();
+	//Thread.sleep(2000);
+	
+//Open Query option    
+    WebElement query1 = wait.until(ExpectedConditions.elementToBeClickable((By.xpath("//*[@id='main-content']/div/div/div/div[1]/div[2]/ul"))));
+	Thread.sleep(2000);
+	WebElement Option1 = query1.findElement(By.xpath("//li[text()='Query']"));
+	Option1.click();
+	Thread.sleep(2000);
+	
+//Add Filter Option
+	WebElement addcolumns = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[text()='Add Columns']")));
+	addcolumns.click();
+	Thread.sleep(2000);
+//Select option from list
+//Select Activity ID
+	WebElement ActivityID = driver.findElement(By.xpath("//*[@id='react-select-2-option-0']"));
+	Actions activityid = new Actions(driver);
+	activityid.moveToElement(ActivityID).click(ActivityID).build().perform();
+	Thread.sleep(2000);
+
+//Deselect Activity ID	
+	WebElement element1 = driver.findElement(By.xpath("//*[@id='react-select-2-option-0']"));
+	Actions action1 = new Actions(driver);
+	action1.moveToElement(element1).click(element1).build().perform();
+	Thread.sleep(2000);
+//Select Incomegroup
+	WebElement Incomegroup = driver.findElement(By.xpath("//*[@id='react-select-2-option-2']"));
+	Actions group = new Actions(driver);
+	group.moveToElement(Incomegroup).click(Incomegroup).build().perform();
+	Thread.sleep(2000);
+
+//Download CSV button
+	WebElement filterButton1 = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[text()='Download CSV']")));
+	filterButton1.click();
+	Thread.sleep(2000);
+		
+//Search		
+	WebElement search = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='react-tabs-3']/div/div[2]/div[3]/div/div/div[1]/div[2]/div/input")));
+	search.sendKeys("2017");
+	search.sendKeys(Keys.ENTER);
+	Thread.sleep(2000);
+
+//Click second page
+	WebElement rightarrow = driver.findElement(By.xpath("//*[@data-testid='ChevronRightIcon']"));
+	Actions act8 = new Actions(driver);
+	act8.moveToElement(rightarrow).
+	doubleClick().build().perform();
+	Thread.sleep(2000);
+
+//Click Report link
+	WebElement search1 = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[text()='Revenue Administration and Revenue Policy -Paraguay']")));
+	search1.click();
+	Thread.sleep(2000);
+
+//Close Report infomration page
+	WebElement activityreportModalClose = wait.until(ExpectedConditions.elementToBeClickable((By.cssSelector("button[class='modal-close']"))));
+	activityreportModalClose.click();
+	Thread.sleep(2000);
+//Click first page
+	WebElement leftarrow = driver.findElement(By.xpath("//*[@data-testid='ChevronLeftIcon']"));
+	Actions act11 = new Actions(driver);
+	act11.moveToElement(leftarrow).
+	click().build().perform();
+	Thread.sleep(2000);
+}
+@AfterMethod
+public void afterMethod(){
+	driver.close();
+  System.out.println("Finish Data page Test");
+}
+}

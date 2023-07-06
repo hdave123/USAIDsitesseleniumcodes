@@ -1,0 +1,37 @@
+import org.testng.annotations.Test;
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+public class Test7othersites {
+	WebDriver driver;
+	WebDriverWait wait;
+	@BeforeMethod
+	public void setup() throws InterruptedException{
+		System.setProperty("webdriver.chrome.driver","C:\\Users\\HDave\\Downloads\\chromedriver_win32 105.\\chromedriver.exe");
+		driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("https://tcb.dev.devtechlab.com/");
+		wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+		driver.findElement(By.xpath("//*[@id='react-burger-menu-btn']")).click();
+		Thread.sleep(2000);
+}
+@Test 
+public void test01() throws InterruptedException{
+//Open FAE
+		driver.findElement(By.xpath("//*[text()='FAE']")).click();
+		Thread.sleep(2000);
+		Actions fae = new Actions(driver);
+		fae.sendKeys(Keys.PAGE_DOWN).build().perform();
+		System.out.println("Scroll down perfomed");
+		driver.navigate().back();
+		Thread.sleep(8000);
+		

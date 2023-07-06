@@ -1,0 +1,261 @@
+package TCBDashboard;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+public class TCBTrends {
+	WebDriver driver;
+	WebDriverWait wait;
+	@BeforeMethod
+	public void setup() throws InterruptedException{
+		System.setProperty("webdriver.chrome.driver","C:\\Users\\HDave\\Downloads\\chromedriver_win32 105.\\chromedriver.exe");
+		driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("https://tcb.dev.devtechlab.com/");
+		wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+		driver.findElement(By.xpath("//*[@id='react-burger-menu-btn']")).click();
+		Thread.sleep(2000);
+//Open Trends Page
+		WebElement trends = driver.findElement(By.xpath("//*[@id='outer-container']/div[1]/div/div[3]/div[1]/nav/ul/li/ul/li[1]/ul/li[2]/a"));
+		trends.click();
+		Actions act = new Actions(driver);
+	    act.moveToElement(trends).
+	    click().build().perform();
+	    Thread.sleep(2000);
+//Click outside Trends Page   
+	    driver.findElement(By.xpath("//*[@id='outer-container']/div[1]/div/div[1]")).click();
+	    Thread.sleep(2000);
+		Thread.sleep(2000);
+	}
+
+@Test (priority = 0)
+public void test01() throws InterruptedException{
+// Fiscal Year
+    WebElement fiscalyeardropdown = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='main-content']/div/div[1]/div[2]/div[2]/div/div/div/div[1]")));
+    fiscalyeardropdown.click();
+    Thread.sleep(2000);
+// select 2018 taxyear
+    WebElement option = fiscalyeardropdown.findElement(By.xpath("//div[text()='2018']"));
+	option.click();
+	Thread.sleep(2000);
+
+//Trade Related Agriculture info
+	WebElement ele = driver.findElement(By.xpath("//*[@id='main-content']/div/div[1]/div[3]/div[1]/div[2]/div[1]/div[2]/div[1]/span/span/div[2]"));
+	Actions act10 = new Actions(driver);
+	act10.moveToElement(ele).
+	click().build().perform();
+	Thread.sleep(2000);
+	
+//U.S Agency for International development
+	WebElement ele1 = driver.findElement(By.xpath("//*[@id='main-content']/div/div[1]/div[3]/div[1]/div[2]/div[2]/div[2]/div[1]/span/span/div[2]"));
+	Actions act11 = new Actions(driver);
+	act11.moveToElement(ele1).
+	click().build().perform();
+	Thread.sleep(2000);
+	
+//Others
+	WebElement ele2 = driver.findElement(By.xpath("//*[@id='main-content']/div/div[1]/div[3]/div[1]/div[2]/div[2]/div[2]/div[7]/span/span/div[2]"));
+	Actions act2 = new Actions(driver);
+	act2.moveToElement(ele2).
+	click().build().perform();
+	Thread.sleep(2000);
+	driver.close();
+}
+@Test (priority = 1)
+public void test02() throws InterruptedException{
+//Play Button
+	
+	WebElement playbutton = driver.findElement(By.cssSelector("#player-controls > button:nth-child(2)"));
+	Actions  play  = new Actions(driver);
+	 play .moveToElement( playbutton ).
+	click().build().perform();
+	Thread.sleep(2000);
+//Forward Button
+	WebElement forwardbutton = driver.findElement(By.cssSelector("#player-controls > button:nth-child(3)"));
+	Actions forward = new Actions(driver);
+	forward.moveToElement(forwardbutton).
+	click().build().perform();
+	Thread.sleep(2000);
+
+//Backword Button
+	 WebElement backwordbutton = driver.findElement(By.cssSelector("#player-controls > button:nth-child(1)"));
+	 Actions  back  = new Actions(driver);
+	 back .moveToElement( backwordbutton ).
+	 click().build().perform();
+	 Thread.sleep(2000);
+	 driver.close();
+
+}
+@Test (priority =2)
+//Country in map			
+public void test03() throws InterruptedException{
+//Click Niger
+	WebElement Niger = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@class='node no-selection NER']")));
+	Actions ner = new Actions(driver);
+	ner.doubleClick(Niger).perform();		
+	Thread.sleep(2000);
+
+//Click Afghanistan
+
+	WebElement Afghanistan = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@class='node no-selection AFG']")));
+	Actions afg = new Actions(driver);
+	afg.doubleClick(Afghanistan).perform();		
+	Thread.sleep(2000);
+
+//Click India
+	
+	WebElement India = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@class='node no-selection IND']")));
+	Actions ind = new Actions(driver);
+	ind.doubleClick(India).perform();		
+	Thread.sleep(2000);
+
+//Click Pakistan
+	
+	WebElement Pakistan = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@class='node no-selection PAK']")));
+	Actions pak = new Actions(driver);
+	pak.doubleClick(Pakistan).perform();		
+	Thread.sleep(2000);
+//Reset
+	 WebElement reset = driver.findElement(By.xpath("//button[@class='reset']"));
+	 reset.click();
+	 Thread.sleep(2000);
+
+//Map Zoom in
+	 WebElement zoomin = driver.findElement(By.xpath("//button[@class='zoomIn']"));
+	 zoomin.click();
+	 zoomin.click();
+	 Thread.sleep(2000);
+	 
+//Map Zoom out
+	WebElement zoomout = driver.findElement(By.xpath("//button[@class='zoomOut']"));
+	zoomout.click();
+	zoomout.click();
+	Thread.sleep(2000);
+	driver.close();
+}
+@Test (priority = 4)
+public void test04() throws InterruptedException{
+//Constant Dollar chart
+
+	WebElement year99 = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='select-bar-chart__bar-0']")));
+	Actions year9 = new Actions(driver);
+	year9.doubleClick(year99).perform();		
+	Thread.sleep(2000);
+						
+	WebElement year00 = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='select-bar-chart__bar-1']")));
+	Actions year0 = new Actions(driver);
+	year0.doubleClick(year00).perform();		
+	Thread.sleep(2000);
+					
+	WebElement year01 = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='select-bar-chart__bar-2']")));
+	Actions year1 = new Actions(driver);
+	year1.doubleClick(year01).perform();		
+	Thread.sleep(2000);
+	
+	WebElement year02 = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='select-bar-chart__bar-3']")));
+	Actions year2 = new Actions(driver);
+	year2.doubleClick(year02).perform();		
+	Thread.sleep(2000);
+		
+	WebElement year03 = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='select-bar-chart__bar-4']")));
+	Actions year3 = new Actions(driver);
+	year3.doubleClick(year03).perform();		
+	Thread.sleep(2000);
+		
+	WebElement year04 = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='select-bar-chart__bar-5']")));
+	Actions year4 = new Actions(driver);
+	year4.doubleClick(year04).perform();		
+	Thread.sleep(2000);
+	
+	WebElement year05 = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='select-bar-chart__bar-6']")));
+	Actions year5 = new Actions(driver);
+	year5.doubleClick(year05).perform();		
+	Thread.sleep(2000);
+	
+	WebElement year06 = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='select-bar-chart__bar-7']")));
+	Actions year6 = new Actions(driver);
+	year6.doubleClick(year06).perform();		
+	Thread.sleep(2000);
+	
+	WebElement year07 = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='select-bar-chart__bar-8']")));
+	Actions year7  = new Actions(driver);
+	year7.doubleClick(year07).perform();		
+	Thread.sleep(2000);
+	
+	WebElement year08 = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='select-bar-chart__bar-9']")));
+	Actions year8 = new Actions(driver);
+	year8.doubleClick(year08).perform();		
+	Thread.sleep(2000);
+	
+	WebElement year09 = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='select-bar-chart__bar-10']")));
+	Actions year009  = new Actions(driver);
+	year009.doubleClick(year09).perform();		
+	Thread.sleep(2000);
+	
+	WebElement year10 = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='select-bar-chart__bar-11']")));
+	Actions year001 = new Actions(driver);
+	year001.doubleClick(year10).perform();		
+	Thread.sleep(2000);
+	
+	WebElement year11 = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='select-bar-chart__bar-12']")));
+	Actions year111 = new Actions(driver);
+	year111.doubleClick(year11).perform();		
+	Thread.sleep(2000);
+	
+	WebElement year12 = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='select-bar-chart__bar-13']")));
+	Actions year112 = new Actions(driver);
+	year112.doubleClick(year12).perform();		
+	Thread.sleep(2000);
+	
+	WebElement year13 = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='select-bar-chart__bar-14']")));
+	Actions year113 = new Actions(driver);
+	year113.doubleClick(year13).perform();		
+	Thread.sleep(2000);
+	
+	WebElement year14  = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='select-bar-chart__bar-15']")));
+	Actions year114 = new Actions(driver);
+	year114.doubleClick(year14).perform();		
+	Thread.sleep(2000);
+	
+	WebElement year15 = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='select-bar-chart__bar-16']")));
+	Actions year115 = new Actions(driver);
+	year115.doubleClick(year15).perform();		
+	Thread.sleep(2000);
+	
+	WebElement year16 = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='select-bar-chart__bar-17']")));
+	Actions year116  = new Actions(driver);
+	year116.doubleClick(year16).perform();		
+	Thread.sleep(2000);
+	
+	WebElement year17 = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='select-bar-chart__bar-18']")));
+	Actions year117 = new Actions(driver);
+	year117.doubleClick(year17).perform();		
+	Thread.sleep(2000);
+	
+	WebElement year18 = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='select-bar-chart__bar-19']")));
+	Actions year118 = new Actions(driver);
+	year118.doubleClick(year18).perform();		
+	Thread.sleep(2000);
+		
+	WebElement year19 = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='select-bar-chart__bar-20']")));
+	Actions year119 = new Actions(driver);
+	year119.doubleClick(year19).perform();		
+	Thread.sleep(2000);
+	
+	WebElement year20 = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='select-bar-chart__bar-21']")));
+	Actions year200 = new Actions(driver);
+	year200.doubleClick(year20).perform();		
+	Thread.sleep(2000);
+	driver.close();			
+
+}
+}
