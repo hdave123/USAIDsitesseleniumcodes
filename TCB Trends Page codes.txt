@@ -17,7 +17,7 @@ public class TCBTrends {
 	WebDriverWait wait;
 	@BeforeMethod
 	public void setup() throws InterruptedException{
-		System.setProperty("webdriver.chrome.driver","C:\\Users\\HDave\\Downloads\\chromedriver_win32 105.\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver","C:\\Users\\HDave\\Downloads\\chromedriver_win32\\chromedriver.exe");
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.get("https://tcb.dev.devtechlab.com/");
