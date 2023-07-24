@@ -23,7 +23,7 @@ public class AnalyticalProducts {
 		WebDriverWait wait;
 		@BeforeMethod
 public void setup() throws InterruptedException{
-			System.setProperty("webdriver.chrome.driver", "C:\\Users\\hdave\\Downloads\\chromedriver_win32_1\\chromedriver.exe");
+			System.setProperty("webdriver.chrome.driver", "C:\\Users\\hdave\\Downloads\\chromedriver_win32\\chromedriver.exe");
 			ChromeOptions options = new ChromeOptions();
 			options.addArguments("--remote-allow-origins=*");
 			DesiredCapabilities Cp = new DesiredCapabilities();
